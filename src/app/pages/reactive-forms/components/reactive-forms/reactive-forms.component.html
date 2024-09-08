@@ -1,0 +1,140 @@
+<section class="shadow-block">
+  <h1>Reactive Forms</h1>
+
+  <form class="form" [formGroup]="form">
+    <div class="row-form-control">
+      <div class="col-4">Имя</div>
+      <div class="col-6">
+        <input
+          type="text"
+          placeholder="Имя"
+          formControlName="firstName"
+        />
+      </div>
+    </div>
+    <div class="row-form-control">
+      <div class="col-4">Фамилия</div>
+      <div class="col-6">
+        <div class="input-box">
+          <input
+            type="text"
+            placeholder="Фамилия"
+            formControlName="lastName"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row-form-control">
+      <div class="col-4">Пароль</div>
+      <div class="col-6">
+        <div class="input-box">
+          <input
+            type="text"
+            placeholder="Пароль"
+            [formControl]="passwordControl"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row-form-control">
+      <div class="col-4">Повторите пароль</div>
+      <div class="col-6">
+        <div class="input-box">
+          <input
+            type="text"
+            placeholder="Пароль"
+            [formControl]="repeatPasswordControl"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row-form-control">
+      <div class="col-4">Способ подтверждения</div>
+      <div class="col-6">
+        <div class="radio-options">
+          @for (method of confirmationMethods$ | async; track method.value) {
+          <div class="radio">
+            <input
+              type="radio"
+              [id]="method.value"
+              [value]="method.value"
+              formControlName="method"
+              name="method"
+            />
+            <label [for]="method.value">{{ method.label }}</label>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+    <div class="row-form-control">
+      <div class="col-4"></div>
+      <div class="col-6">
+        @if(methodControl.value === ConfirmationMethodsEnum.EMAIL) {
+        <input
+          type="text"
+          placeholder="Эл. почта"
+          appPendingMessage
+          formControlName="email"
+        />
+        } @else {
+        <app-phone-input formControlName="phone"></app-phone-input>
+        }
+      </div>
+    </div>
+    <div class="row-form-control">
+      <div class="col-4">Дата рождения</div>
+      <div class="col-6">
+        <div class="input-box">
+          <input
+            type="text"
+            onfocus="(this.type='date')"
+            placeholder="Дата рождения"
+            formControlName="birthdayDate"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row-form-control">
+      <div class="col-4">Пол</div>
+      <div class="col-6">
+        <div class="radio-options">
+          @for (gender of genders$ | async; track gender.value) {
+          <div class="radio">
+            <input
+              type="radio"
+              [id]="gender.value"
+              [value]="gender.value"
+              formControlName="gender"
+              name="gender"
+            />
+            <label [for]="gender.value">{{ gender.label }}</label>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+    <div class="row-form-control">
+      <div class="col-4">Адрес</div>
+      <div class="col-6">
+        <div class="input-box">
+          <input
+            type="text"
+            placeholder="Адрес"
+            formControlName="address"
+          />
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="form-button"
+      type="submit"
+      [disabled]="form.invalid"
+      (click)="send()"
+    >
+      Отправить
+    </button>
+    <button class="form-button" (click)="disable()">Отключить</button>
+  </form>
+</section>

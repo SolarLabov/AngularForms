@@ -1,0 +1,12 @@
+.p-megamenu.p-megamenu-vertical {
+  width: 300px;
+}
+
+
+.p-inputtext:enabled:focus {
+  outline: var(--green);
+  outline-offset: 1px;
+  outline-width: 2px;
+  box-shadow: none;
+  border-color: var(--green);
+}

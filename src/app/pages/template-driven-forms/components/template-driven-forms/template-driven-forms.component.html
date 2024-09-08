@@ -1,0 +1,245 @@
+<section class="shadow-block">
+  <h1>Template Driven Forms</h1>
+
+  <form class="form" (ngSubmit)="submit()" #registrationForm="ngForm">
+    <div class="row-form-control">
+      <div class="col-4">Имя</div>
+      <div class="col-6">
+        <app-validation-message>
+          <input
+            type="text"
+            placeholder="Имя"
+            name="firstName"
+            ngModel
+            required
+            #firstName="ngModel"
+          />
+        </app-validation-message>
+      </div>
+    </div>
+    <div class="row-form-control">
+      <div class="col-4">Фамилия</div>
+      <div class="col-6">
+        <app-validation-message>
+          <input
+            type="text"
+            placeholder="Фамилия"
+            name="lastName"
+            ngModel
+            required
+            #lastName="ngModel"
+          />
+        </app-validation-message>
+      </div>
+    </div>
+    <div class="row-form-control">
+      <div class="col-4">Пароль</div>
+      <div class="col-6">
+        <app-validation-message>
+          <input
+            type="text"
+            placeholder="Пароль"
+            ngModel
+            name="password"
+            required
+            #password="ngModel"
+          />
+        </app-validation-message>
+      </div>
+    </div>
+    <div class="row-form-control">
+      <div class="col-4">Повторите пароль</div>
+      <div class="col-6">
+        <app-validation-message>
+          <input
+            type="text"
+            placeholder="Пароль"
+            ngModel
+            name="repeatPassword"
+            required
+            #repeatPassword="ngModel"
+          />
+        </app-validation-message>
+      </div>
+    </div>
+    <div class="row-form-control">
+      <div class="col-4">Эл. почта</div>
+      <div class="col-6">
+        <app-validation-message>
+          <input
+            type="text"
+            placeholder="Эл. почта"
+            name="email"
+            ngModel
+            required
+            email
+            #email="ngModel"
+          />
+        </app-validation-message>
+      </div>
+    </div>
+    <div class="row-form-control">
+      <div class="col-4">Телефон</div>
+      <div class="col-6">
+        <app-validation-message>
+          <input
+            type="text"
+            placeholder="Телефон"
+            name="phone"
+            ngModel
+            required
+            pattern="[0-9]{11}"
+            #phone="ngModel"
+          />
+        </app-validation-message>
+      </div>
+    </div>
+    <div class="row-form-control">
+      <div class="col-4">Дата рождения</div>
+      <div class="col-6">
+        <app-validation-message>
+          <input
+            type="date"
+            placeholder="Дата рождения"
+            name="birthdayDate"
+            ngModel
+            required
+            #birthdayDate="ngModel"
+          />
+        </app-validation-message>
+      </div>
+    </div>
+    <div class="row-form-control">
+      <div class="col-4">Пол</div>
+      <div class="col-6">
+        <app-validation-message>
+          <div class="radio-options">
+            @for (gender of genders$ | async; track gender.value) {
+            <div class="radio">
+              <input
+                type="radio"
+                [id]="gender.value"
+                [value]="gender.value"
+                name="gender"
+                [ngModel]="defaultGender"
+              />
+              <label [for]="gender.value">{{ gender.label }}</label>
+            </div>
+            }
+          </div>
+        </app-validation-message>
+      </div>
+    </div>
+    <div class="row-form-control">
+      <div class="col-4">Адрес</div>
+      <div class="col-6">
+        <app-validation-message>
+          <input
+            type="text"
+            placeholder="Адрес"
+            name="address"
+            ngModel
+            required
+            #address="ngModel"
+          />
+        </app-validation-message>
+      </div>
+    </div>
+    <button
+      class="form-button"
+      type="submit"
+      [disabled]="!registrationForm.valid"
+    >
+      Отправить
+    </button>
+  </form>
+</section>
+
+<!-- <section class="user-detail-container">
+  <div class="user-details-container">
+    <div class="user-avatar">
+      <p>
+        {{ firstName.slice(0, 1).toUpperCase()
+        }}{{ lastName.slice(0, 1).toUpperCase() }}
+      </p>
+    </div>
+    <div class="user-details">
+      <div class="user-name">
+        <h2>{{ firstName }} {{ lastName }}</h2>
+      </div>
+      <p><b>Email:</b> {{ emailAddress }}</p>
+      <p><b>Username:</b> {{ userName }}</p>
+      <p><b>Date of birth:</b> {{ birthdayDate }}</p>
+      <div class="user-name">
+        <h3>Address</h3>
+      </div>
+      <span>{{ country }}</span
+      >. <span>{{ city }}</span
+      >. <span>{{ region }}</span
+      >.
+      <span> {{ postal }}</span>
+    </div>
+  </div>
+</section> -->
+
+<div class="shadow-block">
+  <h1>Для работы с Template Driven Forms:</h1>
+  <ol class="ordered-list">
+    <li>
+      Убедитесь, что вы импортировали FormsModule в ваш модуль
+      <app-code-highlight
+        code="
+      import { FormsModule } from '@angular/forms';
+      ...
+        imports: [FormsModule]
+      ...
+    "
+        language="ts"
+      >
+      </app-code-highlight>
+    </li>
+    <li>
+      Создайте форму
+      <app-code-highlight
+        code='
+        &lt;form #form="ngForm" (ngSubmit)="onSubmit(form)"&gt;
+          &lt;input type="text" name="username" ngModel required /&gt;
+          &lt;button type="submit"&gt;
+            Отправить
+          &lt;/button&gt;
+        &lt;/form&gt;
+      '
+      >
+      </app-code-highlight>
+    </li>
+    <li>
+      В компоненте реализуйте метод для обработки данных
+      <app-code-highlight
+        code="
+        onSubmit(form: NgForm) {
+          console.log(form.value);
+        }
+      "
+        language="ts"
+      >
+      </app-code-highlight>
+    </li>
+    <li>
+      Добавьте валидацию, используя встроенные директивы:
+      <app-code-highlight
+        code='
+        &lt;input type="text" name="username" ngModel required #username="ngModel" /&gt;
+        &lt;div *ngIf="username.invalid &amp;&amp; username.touched"&gt;
+          Это поле обязательно для заполнения.
+        &lt;/div&gt;
+      '
+        language="ts"
+      >
+      </app-code-highlight>
+    </li>
+    <li>
+      Данные формы: Чтобы получить доступ к данным формы, используйте form.value
+      после отправки.
+    </li>
+  </ol>
+</div>

@@ -1,0 +1,60 @@
+input {
+  border: 1px solid var(--c-field-border);
+  padding: 10px;
+  border-radius: 4px;
+  color: var(--gray-dark);
+  font-family: var(--font-family), "sans-serif";
+  font-size: 14px;
+
+  &::placeholder {
+    color: var(--gray-2);
+  }
+
+  &:not([type="radio"]) {
+    width: 100%;
+  }
+
+  &[type="radio"] {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    padding: 0;
+    margin: 0;
+  }
+
+  &:focus-visible {
+    outline-color: var(--green);
+    outline-offset: -1px;
+  }
+}
+
+.radio-options {
+  display: flex;
+  column-gap: 10px;
+
+  .radio {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+  }
+}
+
+.form-button {
+  padding: 10px 25px;
+  text-align: center;
+  border: 1px solid var(--green);
+  color: var(--green);
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.1s;
+
+  &:hover {
+    background-color: var(--gray-light-8);
+  }
+
+  &:active {
+    background-color: var(--green);
+    color: var(--white);
+  }
+}

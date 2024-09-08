@@ -1,0 +1,9 @@
+<p-inputMask
+  [(ngModel)]="value"
+  (onBlur)="onBlur()"
+  (ngModelChange)="onModelChange()"
+  [mask]="phoneMask"
+  placeholder="Телефон"
+  class="form-control"
+  [disabled]="disabled"
+></p-inputMask>

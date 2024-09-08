@@ -1,0 +1,19 @@
+.ng-invalid.ng-touched {
+  border-color: var(--red);
+  outline-color: var(--red);
+}
+
+.ng-pending {
+  border-color: var(--cian-light);
+  outline-color: var(--cian-light) !important;
+}
+
+.validation-message {
+  color: var(--red);
+  margin-top: 5px;
+}
+
+.validation-pending {
+  color: var(--cian-light);
+  margin-top: 5px;
+}

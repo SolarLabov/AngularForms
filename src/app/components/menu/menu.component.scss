@@ -1,0 +1,41 @@
+.menu {
+  position: sticky;
+  top: 20px;
+
+  &::ng-deep {
+    .p-megamenu {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0px 0px 15px 0px rgba(34, 60, 80, 0.1);
+      padding: 30px 25px;
+      background-color: var(--white);
+
+      .p-menuitem > .p-menuitem-content .p-menuitem-link {
+        border-radius: 8px;
+        &:not(.p-menuitem-link-active) {
+          border: 1px solid transparent;
+        }
+      }
+
+      .p-menuitem {
+        margin: 5px 0;
+      }
+
+      .p-menuitem-link-active {
+        border: 1px solid var(--green);
+        .p-menuitem-text {
+          color: var((--green));
+        }
+      }
+
+      .p-menuitem:not(.p-highlight):not(.p-disabled)
+        > .p-menuitem-content:hover {
+        border-radius: 8px;
+      }
+      .p-menuitem:not(.p-highlight):not(.p-disabled)
+        > .p-menuitem-content:hover:has(a.p-menuitem-link-active) {
+        background-color: var(--white);
+      }
+    }
+  }
+}
