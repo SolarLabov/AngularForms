@@ -1,0 +1,34 @@
+<div class="row-form-control">
+  <div class="col-4">Имя</div>
+  <div class="col-6">
+    {{ user?.firstName }}
+  </div>
+</div>
+
+<div class="row-form-control">
+  <div class="col-4">Фамилия</div>
+  <div class="col-6">
+    {{ user?.lastName }}
+  </div>
+</div>
+
+<div class="row-form-control">
+  <div class="col-4">Дата рождения</div>
+  <div class="col-6">
+    {{ user?.birthdayDate | date : "dd MMMM yyyy" }}
+  </div>
+</div>
+
+<div class="row-form-control">
+  <div class="col-4">Пол</div>
+  <div class="col-6">
+    {{ user?.gender }}
+  </div>
+</div>
+
+<div class="row-form-control">
+  <div class="col-4">Адрес</div>
+  <div class="col-6">
+    {{ user?.address }}
+  </div>
+</div>

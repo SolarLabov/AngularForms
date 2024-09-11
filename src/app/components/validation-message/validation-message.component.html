@@ -1,6 +1,9 @@
 <ng-content></ng-content>
 
+@if ((control?.touched || control?.dirty) && control?.invalid) {
+
 <div class="validation-message">
-  @if ((control?.touched || control?.dirty) && control?.invalid) {
-  @if(errors?.['required']) { Пожалуйста, заполните это поле. } }
+  @if(errors?.['required']) { Пожалуйста, заполните это поле. }
 </div>
+
+}

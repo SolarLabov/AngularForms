@@ -22,4 +22,8 @@ export class DefaultValidationMessages {
   public emailExists(): string {
     return `Этот email уже используется.`;
   }
+
+  public mustMatch(): string {
+    return `Пароли должны совпадать.`;
+  }
 }

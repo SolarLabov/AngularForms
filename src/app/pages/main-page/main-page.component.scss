@@ -1,0 +1,22 @@
+.shadow-block {
+  padding: 50px;
+}
+
+.title {
+  font-size: 48px;
+  text-align: center;
+  text-shadow: 0 0 2vw rgba(#7304f3, 0.5);
+  margin-top: 70px;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  column-gap: 25px;
+  justify-content: center;
+}
+
+.solarlab-logo svg {
+  width: 210px;
+  height: 90px;
+}

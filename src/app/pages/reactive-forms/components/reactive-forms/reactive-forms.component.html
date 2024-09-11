@@ -1,4 +1,4 @@
-<section class="shadow-block">
+<section class="shadow-block" >
   <h1>Reactive Forms</h1>
 
   <form class="form" [formGroup]="form">
@@ -9,6 +9,7 @@
           type="text"
           placeholder="Имя"
           formControlName="firstName"
+          appValidation
         />
       </div>
     </div>
@@ -20,6 +21,7 @@
             type="text"
             placeholder="Фамилия"
             formControlName="lastName"
+            appValidation
           />
         </div>
       </div>
@@ -32,6 +34,7 @@
             type="text"
             placeholder="Пароль"
             [formControl]="passwordControl"
+            appValidation
           />
         </div>
       </div>
@@ -44,6 +47,7 @@
             type="text"
             placeholder="Пароль"
             [formControl]="repeatPasswordControl"
+            appValidation
           />
         </div>
       </div>
@@ -59,8 +63,9 @@
               [id]="method.value"
               [value]="method.value"
               formControlName="method"
+              appValidation
               name="method"
-            />
+              />
             <label [for]="method.value">{{ method.label }}</label>
           </div>
           }
@@ -74,8 +79,9 @@
         <input
           type="text"
           placeholder="Эл. почта"
-          appPendingMessage
           formControlName="email"
+          appPendingMessage
+          appValidation
         />
         } @else {
         <app-phone-input formControlName="phone"></app-phone-input>
@@ -91,6 +97,7 @@
             onfocus="(this.type='date')"
             placeholder="Дата рождения"
             formControlName="birthdayDate"
+            appValidation
           />
         </div>
       </div>
@@ -106,6 +113,7 @@
               [id]="gender.value"
               [value]="gender.value"
               formControlName="gender"
+              appValidation
               name="gender"
             />
             <label [for]="gender.value">{{ gender.label }}</label>
@@ -122,19 +130,21 @@
             type="text"
             placeholder="Адрес"
             formControlName="address"
+            appValidation
           />
         </div>
       </div>
     </div>
-
-    <button
-      class="form-button"
-      type="submit"
-      [disabled]="form.invalid"
-      (click)="send()"
-    >
-      Отправить
-    </button>
-    <button class="form-button" (click)="disable()">Отключить</button>
+    <div class="buttons-group">
+      <button
+        class="form-button"
+        type="submit"
+        [disabled]="form.invalid"
+        (click)="send()"
+      >
+        Отправить
+      </button>
+      <button class="form-button" (click)="disable()">Отключить</button>
+    </div>
   </form>
 </section>

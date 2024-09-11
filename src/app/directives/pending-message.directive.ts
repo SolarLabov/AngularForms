@@ -11,6 +11,7 @@ import { NgControl } from '@angular/forms';
 @Directive({
   selector: '[appPendingMessage]',
   standalone: true,
+  exportAs: 'foo'
 })
 export class PendingMessageDirective {
   text = input<string>('Проверяем ваш email...', { alias: 'pendingText' });

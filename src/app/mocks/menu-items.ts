@@ -3,6 +3,7 @@ import { MegaMenuItem, MenuItem } from 'primeng/api';
 export const menuItems: MegaMenuItem[] = [
   {
     label: 'Главная',
+    routerLink: ['/main'],
   },
   {
     label: 'Директива NgModel',

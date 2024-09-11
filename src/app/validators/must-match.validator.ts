@@ -14,7 +14,8 @@ export function mustMatchValidator(
     const matchingControl = formGroup.get(matchingControlName);
 
     if (baseControl.value !== matchingControl.value) {
-      return { mustmatch: true };
+      matchingControl.setErrors({ mustMatch: true });
+      return { mustMatch: true };
     }
     return null;
   };

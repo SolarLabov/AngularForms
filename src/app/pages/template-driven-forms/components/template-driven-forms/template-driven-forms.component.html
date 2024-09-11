@@ -121,7 +121,7 @@
                 [id]="gender.value"
                 [value]="gender.value"
                 name="gender"
-                [ngModel]="defaultGender"
+                ngModel
               />
               <label [for]="gender.value">{{ gender.label }}</label>
             </div>
@@ -148,7 +148,6 @@
     <button
       class="form-button"
       type="submit"
-      [disabled]="!registrationForm.valid"
     >
       Отправить
     </button>
@@ -182,64 +181,4 @@
   </div>
 </section> -->
 
-<div class="shadow-block">
-  <h1>Для работы с Template Driven Forms:</h1>
-  <ol class="ordered-list">
-    <li>
-      Убедитесь, что вы импортировали FormsModule в ваш модуль
-      <app-code-highlight
-        code="
-      import { FormsModule } from '@angular/forms';
-      ...
-        imports: [FormsModule]
-      ...
-    "
-        language="ts"
-      >
-      </app-code-highlight>
-    </li>
-    <li>
-      Создайте форму
-      <app-code-highlight
-        code='
-        &lt;form #form="ngForm" (ngSubmit)="onSubmit(form)"&gt;
-          &lt;input type="text" name="username" ngModel required /&gt;
-          &lt;button type="submit"&gt;
-            Отправить
-          &lt;/button&gt;
-        &lt;/form&gt;
-      '
-      >
-      </app-code-highlight>
-    </li>
-    <li>
-      В компоненте реализуйте метод для обработки данных
-      <app-code-highlight
-        code="
-        onSubmit(form: NgForm) {
-          console.log(form.value);
-        }
-      "
-        language="ts"
-      >
-      </app-code-highlight>
-    </li>
-    <li>
-      Добавьте валидацию, используя встроенные директивы:
-      <app-code-highlight
-        code='
-        &lt;input type="text" name="username" ngModel required #username="ngModel" /&gt;
-        &lt;div *ngIf="username.invalid &amp;&amp; username.touched"&gt;
-          Это поле обязательно для заполнения.
-        &lt;/div&gt;
-      '
-        language="ts"
-      >
-      </app-code-highlight>
-    </li>
-    <li>
-      Данные формы: Чтобы получить доступ к данным формы, используйте form.value
-      после отправки.
-    </li>
-  </ol>
-</div>
+<app-template-driven-what-to-do />

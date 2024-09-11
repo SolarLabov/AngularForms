@@ -19,6 +19,9 @@ import {
 } from '../../../../mocks/confirmation-methods';
 import { tap } from 'rxjs';
 import { ValidationMessageComponent } from '../../../../components/validation-message/validation-message.component';
+import { ValidationDirective } from '../../../../directives/validation.directive';
+import { SubmitResultComponent } from '../../../../components/submit-result/submit-result.component';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-reactive-forms',
@@ -28,7 +31,7 @@ import { ValidationMessageComponent } from '../../../../components/validation-me
     PhoneInputComponent,
     AsyncPipe,
     PendingMessageDirective,
-    ValidationMessageComponent,
+    ValidationDirective
   ],
   templateUrl: './reactive-forms.component.html',
   styleUrl: './reactive-forms.component.scss',
@@ -51,7 +54,8 @@ export class ReactiveFormsComponent implements OnInit {
   public get repeatPasswordControl(): FormControl {
     return this.form.get('passwords').get('repeatPassword') as FormControl;
   }
-  constructor(private _fb: FormBuilder) {
+  
+  constructor(private _fb: FormBuilder, private _dialogService: DialogService) {
     this.form = this._fb.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
@@ -74,13 +78,18 @@ export class ReactiveFormsComponent implements OnInit {
   }
 
   public send(): void {
-    console.log(this.form);
+    console.log(this.form)
+    this._dialogService.open(SubmitResultComponent, {
+      data: {
+        user: this.form.getRawValue(),
+      },
+      width: '600px',
+      header: 'Проверьте свои данные'
+    });
   }
 
   public disable(): void {
     this.form.disable();
-    console.log(this.form.get('firstName').invalid);
-    console.log(this.form.valid);
   }
 
   private _subscribeToConfirmationMethodChanges() {
