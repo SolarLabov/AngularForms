@@ -6,20 +6,24 @@ export const menuItems: MegaMenuItem[] = [
     routerLink: ['/main'],
   },
   {
+    label: 'Поле формы',
+    routerLink: ['/' , 'form-field'],
+  },
+  {
     label: 'Директива NgModel',
-    routerLink: ['/ng-model'],
+    routerLink: ['/', 'ng-model'],
   },
   {
     label: 'Template Driven Forms',
-    routerLink: ['/template-driven-forms'],
+    routerLink: ['/', 'template-driven-forms'],
   },
   {
     label: 'Reactive Forms',
-    routerLink: ['/reactive-forms'],
+    routerLink: ['/', 'reactive-forms'],
   },
   {
     label: 'Кастомизация',
-    routerLink: ['/customization'],
+    routerLink: ['/', 'customization'],
   },
   // {
   //   label: 'Template Driven Forms VS Reactive Forms',

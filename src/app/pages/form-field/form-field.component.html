@@ -1,0 +1,14 @@
+<div class="shadow-block">
+  <div class="row-form-control">
+    <div class="col-4">Введите текст</div>
+    <div class="col-6">
+      <input type="text" [value]="text" (input)="changeText($event)"/>
+    </div>
+  </div>
+  <div class="row-form-control">
+    <div class="col-4">Значение input:</div>
+    <div class="col-6">
+      {{ text }}
+    </div>
+  </div>
+</div>

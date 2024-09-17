@@ -7,10 +7,10 @@
       <div class="input-box">
         <input
           type="text"
-          [(ngModel)]="text"
-          required
-          #control="ngModel"
-          (change)="onModelChange(control)"
+          [ngModel]="text"
+          [ngModelOptions]="{ updateOn: 'blur'}"
+          (compositionend)="compositionend($event)"
+          (ngModelChange)="onModelChange()"
         />
       </div>
     </div>

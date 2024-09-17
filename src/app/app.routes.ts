@@ -46,6 +46,18 @@ export const routes: Routes = [
             (c) => c.CustomizationComponent
           ),
       },
+      {
+        path: 'form-field',
+        loadComponent: () =>
+          import('./pages/form-field/form-field.component').then(
+            (c) => c.FormFieldComponent
+          ),
+      },
+      {
+        path: '',
+        redirectTo: 'main',
+        pathMatch: 'full',
+      },
     ],
   },
 ];

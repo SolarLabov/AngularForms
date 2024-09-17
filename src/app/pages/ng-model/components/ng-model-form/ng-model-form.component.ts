@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-ng-model-form',
@@ -10,12 +10,12 @@ import { FormsModule } from '@angular/forms';
 })
 export class NgModelFormComponent {
   public text: string;
-  public control: string;
+  public control: FormControl =  new FormControl();
 
   private _defaultValue = 'Значение по умолчанию';
 
   constructor() {
-    // this.text = this._defaultValue;
+    this.text = this._defaultValue;
   }
 
   public resetControl(): void {
@@ -24,7 +24,11 @@ export class NgModelFormComponent {
     this.text = this._defaultValue;
   }
 
-  public onModelChange(event): void {
-    console.log(event);
+  public onModelChange(): void {
+    console.log(this.control);
+  }
+
+  compositionend(event) {
+    console.log(event)
   }
 }
