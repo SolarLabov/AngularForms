@@ -1,20 +1,18 @@
 <section class="shadow-block">
   <h1>Template Driven Forms</h1>
 
-  <form class="form" (ngSubmit)="submit()" #registrationForm="ngForm">
+  <form
+    class="form"
+    (ngSubmit)="submit(registrationForm)"
+    #registrationForm="ngForm"
+  >
     <div class="row-form-control">
       <div class="col-4">Имя</div>
       <div class="col-6">
-        <app-validation-message>
-          <input
-            type="text"
-            placeholder="Имя"
-            name="firstName"
-            ngModel
-            required
-            #firstName="ngModel"
-          />
-        </app-validation-message>
+        <input
+          type="text"
+          placeholder="Имя"
+        />
       </div>
     </div>
     <div class="row-form-control">
@@ -27,7 +25,6 @@
             name="lastName"
             ngModel
             required
-            #lastName="ngModel"
           />
         </app-validation-message>
       </div>
@@ -42,7 +39,6 @@
             ngModel
             name="password"
             required
-            #password="ngModel"
           />
         </app-validation-message>
       </div>
@@ -73,7 +69,6 @@
             ngModel
             required
             email
-            #email="ngModel"
           />
         </app-validation-message>
       </div>
@@ -89,7 +84,6 @@
             ngModel
             required
             pattern="[0-9]{11}"
-            #phone="ngModel"
           />
         </app-validation-message>
       </div>
@@ -104,7 +98,6 @@
             name="birthdayDate"
             ngModel
             required
-            #birthdayDate="ngModel"
           />
         </app-validation-message>
       </div>
@@ -140,45 +133,12 @@
             name="address"
             ngModel
             required
-            #address="ngModel"
           />
         </app-validation-message>
       </div>
     </div>
-    <button
-      class="form-button"
-      type="submit"
-    >
-      Отправить
-    </button>
+    <button class="form-button" type="submit">Отправить</button>
   </form>
 </section>
-
-<!-- <section class="user-detail-container">
-  <div class="user-details-container">
-    <div class="user-avatar">
-      <p>
-        {{ firstName.slice(0, 1).toUpperCase()
-        }}{{ lastName.slice(0, 1).toUpperCase() }}
-      </p>
-    </div>
-    <div class="user-details">
-      <div class="user-name">
-        <h2>{{ firstName }} {{ lastName }}</h2>
-      </div>
-      <p><b>Email:</b> {{ emailAddress }}</p>
-      <p><b>Username:</b> {{ userName }}</p>
-      <p><b>Date of birth:</b> {{ birthdayDate }}</p>
-      <div class="user-name">
-        <h3>Address</h3>
-      </div>
-      <span>{{ country }}</span
-      >. <span>{{ city }}</span
-      >. <span>{{ region }}</span
-      >.
-      <span> {{ postal }}</span>
-    </div>
-  </div>
-</section> -->
 
 <app-template-driven-what-to-do />

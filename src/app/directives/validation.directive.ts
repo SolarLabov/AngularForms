@@ -42,7 +42,10 @@ export class ValidationDirective {
 
   public ngOnDestroy(): void {
     this._renderer.removeClass(this._targetElement, 'validation-message');
-
+    this._renderer.removeChild(
+      this._el.nativeElement.parentNode,
+      this._targetElement
+    );
   }
 
   private _processErrors(messageElement): void {

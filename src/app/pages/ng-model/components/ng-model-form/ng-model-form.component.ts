@@ -25,10 +25,6 @@ export class NgModelFormComponent {
   }
 
   public onModelChange(): void {
-    console.log(this.control);
-  }
-
-  compositionend(event) {
-    console.log(event)
+    console.log(this.text);
   }
 }

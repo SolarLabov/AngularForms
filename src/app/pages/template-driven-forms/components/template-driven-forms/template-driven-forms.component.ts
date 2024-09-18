@@ -6,6 +6,7 @@ import { ValidationMessageComponent } from '../../../../components/validation-me
 import { TemplateDrivenWhatToDoComponent } from '../../../../components/template-driven-what-to-do/template-driven-what-to-do.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { SubmitResultComponent } from '../../../../components/submit-result/submit-result.component';
+import { FirstLetterUppercaseDirective } from '../../../../directives/first-letter-uppercase.directive';
 
 @Component({
   selector: 'app-template-driven-forms',
@@ -18,6 +19,7 @@ import { SubmitResultComponent } from '../../../../components/submit-result/subm
     TemplateDrivenWhatToDoComponent,
     AsyncPipe,
     ValidationMessageComponent,
+    FirstLetterUppercaseDirective,
   ],
   templateUrl: './template-driven-forms.component.html',
   styleUrl: './template-driven-forms.component.scss',
@@ -29,7 +31,8 @@ export class TemplateDrivenFormsComponent {
 
   constructor(private _dialogService: DialogService) {}
 
-  public submit(): void {
+  public submit(form): void {
+    console.log(form)
     this._dialogService.open(SubmitResultComponent, {
       data: {
         user: this.ngForm.form.value,
