@@ -32,13 +32,13 @@ export class TemplateDrivenFormsComponent {
   constructor(private _dialogService: DialogService) {}
 
   public submit(form): void {
-    console.log(form)
+    console.log(form);
     this._dialogService.open(SubmitResultComponent, {
       data: {
         user: this.ngForm.form.value,
       },
       width: '600px',
-      header: 'Проверьте свои данные'
+      header: 'Проверьте свои данные',
     });
   }
 }

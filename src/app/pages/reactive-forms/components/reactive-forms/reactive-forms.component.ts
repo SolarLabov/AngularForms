@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  AbstractControl,
+  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -9,7 +11,7 @@ import {
 } from '@angular/forms';
 import { PhoneInputComponent } from '../../../../components/phone-input/phone-input.component';
 import { GenderEnum, genders$ } from '../../../../mocks/genders';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import { mustMatchValidator } from '../../../../validators/must-match.validator';
 import { emailExistsValidator } from '../../../../validators/email.validator';
 import { PendingMessageDirective } from '../../../../directives/pending-message.directive';
@@ -22,6 +24,7 @@ import { ValidationMessageComponent } from '../../../../components/validation-me
 import { ValidationDirective } from '../../../../directives/validation.directive';
 import { SubmitResultComponent } from '../../../../components/submit-result/submit-result.component';
 import { DialogService } from 'primeng/dynamicdialog';
+import { AddButtonComponent } from '../../../../components/add-button/add-button.component';
 
 @Component({
   selector: 'app-reactive-forms',
@@ -31,7 +34,9 @@ import { DialogService } from 'primeng/dynamicdialog';
     PhoneInputComponent,
     AsyncPipe,
     PendingMessageDirective,
-    ValidationDirective
+    ValidationDirective,
+    AddButtonComponent,
+    NgClass,
   ],
   templateUrl: './reactive-forms.component.html',
   styleUrl: './reactive-forms.component.scss',
@@ -54,7 +59,11 @@ export class ReactiveFormsComponent implements OnInit {
   public get repeatPasswordControl(): FormControl {
     return this.form.get('passwords').get('repeatPassword') as FormControl;
   }
-  
+
+  public get addressesForm() {
+    return (this.form.get('addresses') as FormArray).controls;
+  }
+
   constructor(private _fb: FormBuilder, private _dialogService: DialogService) {
     this.form = this._fb.group({
       firstName: ['', [Validators.required]],
@@ -69,7 +78,9 @@ export class ReactiveFormsComponent implements OnInit {
       birthdayDate: ['', [Validators.required]],
       gender: [GenderEnum.MALE, [Validators.required]],
       method: [ConfirmationMethodsEnum.EMAIL, [Validators.required]],
-      address: ['', [Validators.required]],
+      addresses: this._fb.array([
+        this._fb.group({ address: ['', Validators.required] }),
+      ]),
     });
   }
 
@@ -78,18 +89,27 @@ export class ReactiveFormsComponent implements OnInit {
   }
 
   public send(): void {
-    console.log(this.form)
+    console.log(this.form);
     this._dialogService.open(SubmitResultComponent, {
       data: {
         user: this.form.getRawValue(),
       },
       width: '600px',
-      header: 'Проверьте свои данные'
+      header: 'Проверьте свои данные',
     });
   }
 
   public disable(): void {
     this.form.disable();
+  }
+
+  public addAddressControl() {
+    console.log(this.form);
+    const item = this._fb.group({
+      address: ['', [Validators.required]],
+    });
+
+    (this.form.get('addresses') as FormArray).push(item);
   }
 
   private _subscribeToConfirmationMethodChanges() {

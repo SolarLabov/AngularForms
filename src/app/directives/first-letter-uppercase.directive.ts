@@ -1,4 +1,4 @@
-import { Directive } from '@angular/core';
+import { Directive, Inject } from '@angular/core';
 import {
   AbstractControl,
   NG_VALIDATORS,
@@ -18,7 +18,7 @@ import { firstLetterUppercaseValidator } from '../validators/first-letter-upperc
     },
   ],
 })
-export class FirstLetterUppercaseDirective {
+export class FirstLetterUppercaseDirective implements Validator {
   constructor() {}
 
   validate(control: AbstractControl): ValidationErrors | null {

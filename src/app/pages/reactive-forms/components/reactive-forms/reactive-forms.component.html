@@ -1,4 +1,4 @@
-<section class="shadow-block" >
+<section class="shadow-block">
   <h1>Reactive Forms</h1>
 
   <form class="form" [formGroup]="form">
@@ -65,7 +65,7 @@
               formControlName="method"
               appValidation
               name="method"
-              />
+            />
             <label [for]="method.value">{{ method.label }}</label>
           </div>
           }
@@ -122,18 +122,27 @@
         </div>
       </div>
     </div>
-    <div class="row-form-control">
-      <div class="col-4">Адрес</div>
-      <div class="col-6">
-        <div class="input-box">
-          <input
-            type="text"
-            placeholder="Адрес"
-            formControlName="address"
-            appValidation
-          />
+    <div class="addresses" formArrayName="addresses">
+      @for (address of addressesForm; track address; let i = $index) {
+      <div class="row-form-control">
+        <div class="col-4">@if (i === 0) { Адрес }</div>
+        <div class="col-6" [formGroupName]="i">
+          <div class="input-box">
+            <input
+              type="text"
+              placeholder="Адрес"
+              formControlName="address"
+              appValidation
+            />
+          </div>
         </div>
+        @if(i === addressesForm.length - 1 ) {
+        <div class="col-2 add-btn">
+          <app-add-button (add)="addAddressControl()" />
+        </div>
+        }
       </div>
+      }
     </div>
     <div class="buttons-group">
       <button
