@@ -10,7 +10,7 @@ input {
     color: var(--gray-2);
   }
 
-  &:not([type="radio"]) {
+  &:not([type="radio"]):not([type="checkbox"]) {
     width: 100%;
   }
 

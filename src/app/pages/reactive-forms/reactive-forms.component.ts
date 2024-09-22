@@ -9,23 +9,24 @@ import {
   UntypedFormControl,
   Validators,
 } from '@angular/forms';
-import { PhoneInputComponent } from '../../../../components/phone-input/phone-input.component';
-import { GenderEnum, genders$ } from '../../../../mocks/genders';
-import { AsyncPipe, NgClass } from '@angular/common';
-import { mustMatchValidator } from '../../../../validators/must-match.validator';
-import { emailExistsValidator } from '../../../../validators/email.validator';
-import { PendingMessageDirective } from '../../../../directives/pending-message.directive';
+import { PhoneInputComponent } from '../../components/phone-input/phone-input.component';
+import { GenderEnum, genders$ } from '../../mocks/genders';
+import { AsyncPipe, CommonModule, NgClass } from '@angular/common';
+import { mustMatchValidator } from '../../validators/must-match.validator';
+import { emailExistsValidator } from '../../validators/email.validator';
+import { PendingMessageDirective } from '../../directives/pending-message.directive';
 import {
   confirmationMethods$,
   ConfirmationMethodsEnum,
-} from '../../../../mocks/confirmation-methods';
+} from '../../mocks/confirmation-methods';
 import { tap } from 'rxjs';
-import { ValidationMessageComponent } from '../../../../components/validation-message/validation-message.component';
-import { ValidationDirective } from '../../../../directives/validation.directive';
-import { SubmitResultComponent } from '../../../../components/submit-result/submit-result.component';
+import { ValidationDirective } from '../../directives/validation.directive';
+import { SubmitResultComponent } from '../../components/submit-result/submit-result.component';
 import { DialogService } from 'primeng/dynamicdialog';
-import { AddButtonComponent } from '../../../../components/add-button/add-button.component';
+import { AddButtonComponent } from '../../components/add-button/add-button.component';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-reactive-forms',
   standalone: true,
@@ -99,8 +100,13 @@ export class ReactiveFormsComponent implements OnInit {
     });
   }
 
-  public disable(): void {
-    this.form.disable();
+  public toggle(): void {
+    if (this.form.enabled) {
+      this.form.disable();
+    } else {
+      this.form.enable();
+    }
+    this.form.updateValueAndValidity();
   }
 
   public addAddressControl() {
@@ -113,19 +119,15 @@ export class ReactiveFormsComponent implements OnInit {
   }
 
   private _subscribeToConfirmationMethodChanges() {
-    this._handleConfirmationMethodForm(this.methodControl.value);
+    this._handleConfirmationMethodForm(this.methodControl?.value);
     this.methodControl.valueChanges
       .pipe(
-        tap(() => {
-          console.log('method');
+        tap((method) => {
+          console.log('method: ', method);
         }),
-        tap((method) => this._handleConfirmationMethodForm(method))
+        tap((method) => this._handleConfirmationMethodForm(method)),
+        untilDestroyed(this)
       )
-      .subscribe();
-
-    this.form
-      .get('firstName')
-      .valueChanges.pipe(tap((val) => console.log(val)))
       .subscribe();
   }
 

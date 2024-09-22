@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { TemplateDrivenFormsComponent } from './pages/template-driven-forms/components/template-driven-forms/template-driven-forms.component';
 import { MainComponent } from './layout/main/main.component';
 import { NgModelFormComponent } from './pages/ng-model/components/ng-model-form/ng-model-form.component';
-import { ReactiveFormsComponent } from './pages/reactive-forms/components/reactive-forms/reactive-forms.component';
+import { ReactiveFormsComponent } from './pages/reactive-forms/reactive-forms.component';
 import { CustomizationComponent } from './pages/customization/customization.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 
@@ -36,7 +36,7 @@ export const routes: Routes = [
         path: 'reactive-forms',
         loadComponent: () =>
           import(
-            './pages/reactive-forms/components/reactive-forms/reactive-forms.component'
+            './pages/reactive-forms/reactive-forms.component'
           ).then((c) => c.ReactiveFormsComponent),
       },
       {

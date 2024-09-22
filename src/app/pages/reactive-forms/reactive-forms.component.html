@@ -72,6 +72,7 @@
         </div>
       </div>
     </div>
+
     <div class="row-form-control">
       <div class="col-4"></div>
       <div class="col-6">
@@ -84,7 +85,10 @@
           appValidation
         />
         } @else {
-        <app-phone-input formControlName="phone"></app-phone-input>
+        <app-phone-input
+          formControlName="phone"
+          appValidation
+        ></app-phone-input>
         }
       </div>
     </div>
@@ -153,7 +157,9 @@
       >
         Отправить
       </button>
-      <button class="form-button" (click)="disable()">Отключить</button>
+      <button class="form-button" (click)="toggle()">
+        {{ form.disabled ? "Включить" : "Отключить" }}
+      </button>
     </div>
   </form>
 </section>
