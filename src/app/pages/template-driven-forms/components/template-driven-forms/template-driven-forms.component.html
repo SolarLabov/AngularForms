@@ -3,8 +3,8 @@
 
   <form
     class="form"
-    (ngSubmit)="submit(registrationForm)"
     #registrationForm="ngForm"
+    (ngSubmit)="submit(registrationForm)"
   >
     <div class="row-form-control">
       <div class="col-4">Имя</div>
@@ -14,9 +14,6 @@
           placeholder="Имя"
           name="firstName"
           ngModel
-          #firstName="ngModel"
-          required
-          appFirstLetterUppercase
         />
       </div>
     </div>
@@ -112,7 +109,7 @@
       <div class="col-6">
         <app-validation-message>
           <div class="radio-options">
-            @for (gender of genders$ | async; track gender.value) {
+            @for (gender of gender$ | async; track gender.value) {
             <div class="radio">
               <input
                 type="radio"

@@ -1,7 +1,7 @@
 import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { genders$ } from '../../../../mocks/genders';
+import { gender$ } from '../../../../mocks/genders';
 import { ValidationMessageComponent } from '../../../../components/validation-message/validation-message.component';
 import { TemplateDrivenWhatToDoComponent } from '../../../../components/template-driven-what-to-do/template-driven-what-to-do.component';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -26,8 +26,7 @@ import { FirstLetterUppercaseDirective } from '../../../../directives/first-lett
 })
 export class TemplateDrivenFormsComponent {
   @ViewChild('registrationForm') ngForm: NgForm;
-
-  genders$ = genders$;
+  gender$ = gender$;
 
   constructor(private _dialogService: DialogService) {}
 

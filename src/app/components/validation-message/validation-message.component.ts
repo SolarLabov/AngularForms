@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ContentChild,
-} from '@angular/core';
+import { Component, ContentChild } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
 @Component({

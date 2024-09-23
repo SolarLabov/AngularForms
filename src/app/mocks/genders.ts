@@ -5,7 +5,7 @@ export enum GenderEnum {
   FEMALE = 'female',
 }
 
-export const genders$ = of([
+export const gender$ = of([
   { value: GenderEnum.MALE, label: 'Мужской' },
   { value: GenderEnum.FEMALE, label: 'Женский' },
 ]);

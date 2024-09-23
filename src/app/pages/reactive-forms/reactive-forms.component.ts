@@ -10,7 +10,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { PhoneInputComponent } from '../../components/phone-input/phone-input.component';
-import { GenderEnum, genders$ } from '../../mocks/genders';
+import { GenderEnum, gender$ } from '../../mocks/genders';
 import { AsyncPipe, CommonModule, NgClass } from '@angular/common';
 import { mustMatchValidator } from '../../validators/must-match.validator';
 import { emailExistsValidator } from '../../validators/email.validator';
@@ -25,6 +25,7 @@ import { SubmitResultComponent } from '../../components/submit-result/submit-res
 import { DialogService } from 'primeng/dynamicdialog';
 import { AddButtonComponent } from '../../components/add-button/add-button.component';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { firstLetterUppercaseValidator } from '../../validators/first-letter-uppercase.validator';
 
 @UntilDestroy()
 @Component({
@@ -44,7 +45,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 })
 export class ReactiveFormsComponent implements OnInit {
   public form: FormGroup;
-  public genders$ = genders$;
+  public gender$ = gender$;
   public confirmationMethods$ = confirmationMethods$;
 
   public readonly ConfirmationMethodsEnum = ConfirmationMethodsEnum;
@@ -65,9 +66,13 @@ export class ReactiveFormsComponent implements OnInit {
     return (this.form.get('addresses') as FormArray).controls;
   }
 
+  public get firstName(): FormControl {
+    return this.form.get('firstName') as FormControl
+  }
+
   constructor(private _fb: FormBuilder, private _dialogService: DialogService) {
     this.form = this._fb.group({
-      firstName: ['', [Validators.required]],
+      firstName: ['', [Validators.required, firstLetterUppercaseValidator()]],
       lastName: ['', [Validators.required]],
       passwords: this._fb.group(
         {
@@ -138,7 +143,7 @@ export class ReactiveFormsComponent implements OnInit {
           'email',
           new UntypedFormControl(
             '',
-            [Validators.required],
+            [Validators.required, Validators.email],
             emailExistsValidator()
           )
         );

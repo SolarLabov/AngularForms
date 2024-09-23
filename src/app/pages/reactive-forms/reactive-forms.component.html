@@ -110,7 +110,7 @@
       <div class="col-4">Пол</div>
       <div class="col-6">
         <div class="radio-options">
-          @for (gender of genders$ | async; track gender.value) {
+          @for (gender of gender$ | async; track gender.value) {
           <div class="radio">
             <input
               type="radio"
@@ -152,7 +152,6 @@
       <button
         class="form-button"
         type="submit"
-        [disabled]="form.invalid"
         (click)="send()"
       >
         Отправить

@@ -1,11 +1,15 @@
-import { ChangeDetectorRef, Component, forwardRef } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  forwardRef,
+} from '@angular/core';
 import {
   ControlValueAccessor,
   FormsModule,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import { InputMaskModule } from 'primeng/inputmask';
-import { PHONE_MASK, PHONE_REGEX } from '../../consts/common-constants';
+import { PHONE_MASK } from '../../consts/common-constants';
 
 @Component({
   selector: 'app-phone-input',
@@ -33,12 +37,9 @@ export class PhoneInputComponent implements ControlValueAccessor {
 
   onBlur(): void {
     this._onTouched();
-    this._cdr.markForCheck();
   }
 
   writeValue(obj: any): void {
-    console.warn(obj);
-
     this.value = obj;
   }
 
