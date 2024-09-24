@@ -22,7 +22,7 @@ export const menuItems: MegaMenuItem[] = [
     routerLink: ['/', 'reactive-forms'],
   },
   {
-    label: 'Кастомизация',
+    label: 'Состояния формы',
     routerLink: ['/', 'customization'],
   },
   // {

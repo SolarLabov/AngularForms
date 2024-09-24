@@ -1,5 +1,5 @@
 import { Component, ContentChild } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import { NgControl, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-validation-message',

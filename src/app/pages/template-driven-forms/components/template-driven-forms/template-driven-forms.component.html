@@ -4,7 +4,6 @@
   <form
     class="form"
     #registrationForm="ngForm"
-    (ngSubmit)="submit(registrationForm)"
   >
     <div class="row-form-control">
       <div class="col-4">Имя</div>
@@ -27,6 +26,7 @@
             name="lastName"
             ngModel
             required
+            minlength="10"
           />
         </app-validation-message>
       </div>
